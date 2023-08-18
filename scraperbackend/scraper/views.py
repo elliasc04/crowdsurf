@@ -24,11 +24,11 @@ def scrape_data(request, url):
                 defaults={'livebusyness': live_busyness_data, 'populartimes': populartimes_data}
             )
 
-            # Save the instance to the database
-            scraper.save()
-
-            # Return a success response
-            return JsonResponse({'success': 'Data saved successfully'})
+            # Return a success response with the scraped data
+            return JsonResponse({'success': 'Data saved successfully',
+                                 'livebusyness': live_busyness_data,
+                                 'populartimes': populartimes_data
+                                 })
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
 

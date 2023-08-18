@@ -39,7 +39,6 @@ def get_live_busyness(elementdict, days, timeconvert):
     iscurrentlylive = True
 
     currentday = None
-    currentelement = None
     prevtime = None
     
     for day in days:
@@ -60,13 +59,15 @@ def get_live_busyness(elementdict, days, timeconvert):
             return [current_day, element, timeindex - 1, iscurrentlylive]
 
 class MapsPage:
-    days = {'Sunday': 1,
-                'Monday': 2,
-                'Tuesday': 3,
-                'Wednesday': 4,
-                'Thursday': 5,
-                'Friday': 6,
-                'Saturday': 7}
+    days = {
+        'Sunday': 1,
+        'Monday': 2,
+        'Tuesday': 3,
+        'Wednesday': 4,
+        'Thursday': 5,
+        'Friday': 6,
+        'Saturday': 7
+    }
     
     timeconvert = {
         '1AM': 1, '2AM': 2, '3AM': 3, '4AM': 4, '5AM': 5, '6AM': 6,
@@ -86,9 +87,12 @@ class MapsPage:
         driver = webdriver.Chrome(options=chrome_options)
         driver.get(self.url)
 
-
+        self.haslivedata = True
         self.get_average_times = get_average_times(driver.find_elements(By.CLASS_NAME,"g2BVhd"),list(self.days.keys()))
-        self.live_busyness = get_live_busyness(self.get_average_times, self.days, self.timeconvert)
+        if self.get_average_times:
+            self.live_busyness = get_live_busyness(self.get_average_times, self.days, self.timeconvert)
+        else:
+            self.haslivedata = False
         self.iscurrentlylive = True
 
     def get_by_day(self, day):
@@ -101,6 +105,10 @@ class MapsPage:
         # [1] == Time(24h)
         # [2] == Live Busyness
         # [3] == Usual Busyness
+
+        if not self.haslivedata:
+            return json.dumps('No Live Data')
+
         live_busyness = self.live_busyness
         day = live_busyness[0]
 
@@ -128,6 +136,9 @@ class MapsPage:
     
     def retpopulartimes(self):
         
+        if not self.haslivedata:
+            return json.dumps('No Busyness Data')
+
         timedict = self.get_average_times
         retlist = []
 
