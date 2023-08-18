@@ -6,8 +6,8 @@
 /scraperbackend/scraper/migrations
 /scraperbackend/scraper/__pycache__
 /scraperbackend/scraperbackend/__pycache__
-/node_modules
-/.pnp
+/scraperfrontend/node_modules
+/scraperfrontend/.pnp
 .pnp.js
 
 # testing
