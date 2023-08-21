@@ -1,13 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
-import DialogDemo from './components/dialogbox'
 import './App.css';
-
-interface DialogProps {}
 
 function App() {
   return (
-    <DialogDemo/>
+    <div
+  className='flex justify-center mt-10 items-center'
+>
+  <h1 className='text-xl md:text-4xl'>
+    Hello
+  </h1>
+  <button
+    className='bg-red-300 p-2 rounded mx-20 hover:bg-red-600 hover:text-white'
+  >
+    Click me!
+  </button>
+  <a
+    href='https://google.com'
+    className='underline font-bold'
+  >
+    Google
+  </a>
+</div>
   );
 }
 
