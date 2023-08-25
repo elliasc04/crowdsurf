@@ -86,8 +86,6 @@ class MapsPage:
             for element in element_dict.get(day):
                 if "Current" in element:
                     return [day, element, self.TIME_CONVERT[element[-4:-1][:-2]], True]
-                time_string = re.findall(r"\d+(?:AM|PM)", element)[0]
-                prev_time = self.TIME_CONVERT[time_string]
 
         day_data = element_dict[current_day]
         for element in day_data:
