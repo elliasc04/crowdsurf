@@ -1,28 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
+import {Dialog} from './components/dialog'
 import './App.css';
 
-function App() {
-  return (
-    <div
-  className='flex justify-center mt-10 items-center'
->
-  <h1 className='text-xl md:text-4xl'>
-    Hello
-  </h1>
-  <button
-    className='bg-red-300 p-2 rounded mx-20 hover:bg-red-600 hover:text-white'
-  >
-    Click me!
-  </button>
-  <a
-    href='https://google.com'
-    className='underline font-bold'
-  >
-    Google
-  </a>
-</div>
-  );
-}
+const ParentComponent = () => {
+  const [firstName, setFirstName] = useState("");
+  const [familyName, setFamilyName] = useState("");
 
-export default App;
+  return (
+    <div>
+      <h1>Edit Profile</h1>
+      {/* Render the Dialog component and pass the handle functions as props */}
+      <Dialog
+        onFirstNameChange={setFirstName}
+        onFamilyNameChange={setFamilyName}
+      />
+      <p>First Name: {firstName}</p>
+      <p>Family Name: {familyName}</p>
+    </div>
+  );
+};
+
+export default ParentComponent;
