@@ -2,13 +2,14 @@
 
 # dependencies
 /lib
-/scraperbackend/db.sqlite3
-/scraperbackend/scraper/migrations
-/scraperbackend/scraper/__pycache__
-/scraperbackend/scraperbackend/__pycache__
-/scraperfrontend/node_modules
-/scraperfrontend/.pnp
+/backend/db.sqlite3
+/backend/scraper/migrations
+/backend/__pycache__
+/backend/scraper/__pycache__
+/frontend/node_modules
+/frontend/.pnp
 .pnp.js
+/db.sqlite3
 
 # testing
 /coverage
