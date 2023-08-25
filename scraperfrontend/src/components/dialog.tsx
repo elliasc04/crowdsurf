@@ -6,14 +6,12 @@ import React, { Fragment, useState } from "react";
 import Button from './button'
 
 interface DialogProps {
-  onFirstNameChange: (newValue: string) => void;
-  onFamilyNameChange: (newValue: string) => void;
+  onLinkChange: (newValue: string) => void;
 }
 
-const Dialog = ({ onFirstNameChange, onFamilyNameChange }: DialogProps) => {
+const Dialog = ({ onLinkChange}: DialogProps) => {
   let [isOpen, setIsOpen] = useState(false);
-  const [pendingFirstName, setPendingFirstName] = useState('');
-  const [pendingFamilyName, setPendingFamilyName] = useState('');
+  const [pendingLink, setPendingLink] = useState('');
 
 
   const handleSaveConfirmed = () => {
@@ -22,8 +20,7 @@ const Dialog = ({ onFirstNameChange, onFamilyNameChange }: DialogProps) => {
     // console.log("Saving Family Name:", pendingFamilyName);
 
     // Call the parent component's state-updating functions with the new values
-    onFirstNameChange(pendingFirstName);
-    onFamilyNameChange(pendingFamilyName);
+    onLinkChange(pendingLink);
   };
 
   return (
@@ -88,30 +85,8 @@ const Dialog = ({ onFirstNameChange, onFamilyNameChange }: DialogProps) => {
                     type="text"
                     placeholder="Tim"
                     autoComplete="given-name"
-                    value={pendingFirstName}
-                    onChange={(e) => setPendingFirstName(e.target.value)}
-                    className={clsx(
-                      "mt-1 block w-full rounded-md",
-                      "text-sm text-gray-700 placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-600",
-                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                      "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
-                    )}
-                  />
-                </fieldset>
-                <fieldset>
-                  <label
-                    htmlFor="familyName"
-                    className="text-xs font-medium text-gray-700 dark:text-gray-400"
-                  >
-                    Family Name
-                  </label>
-                  <input
-                    id="familyName"
-                    type="text"
-                    placeholder="Cook"
-                    autoComplete="family-name"
-                    value={pendingFamilyName}
-                    onChange={(e) => setPendingFamilyName(e.target.value)}
+                    value={pendingLink}
+                    onChange={(e) => setPendingLink(e.target.value)}
                     className={clsx(
                       "mt-1 block w-full rounded-md",
                       "text-sm text-gray-700 placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-600",
