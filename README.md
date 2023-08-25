@@ -1,3 +1,3 @@
 # fullstackscraper
 
-a full stack scraper. go figure.    
+a full stack scraper. go figure.
