@@ -9,8 +9,8 @@ def scrape_data(url):
     """Get data by scraping Google Maps page and store it to the database."""
     maps_page = MapsPage(url)
 
-    live_busyness_data = json.loads(maps_page.retlivebusyness())
-    populartimes_data = json.loads(maps_page.retpopulartimes())
+    live_busyness_data = json.loads(maps_page.get_live_busyness())
+    populartimes_data = json.loads(maps_page.get_popular_times())
 
     Scraper.objects.update_or_create(
         url=url,

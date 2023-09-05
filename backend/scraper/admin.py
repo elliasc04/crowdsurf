@@ -12,8 +12,8 @@ class ScraperAdmin(admin.ModelAdmin):
             url = scraper.url
             try:
                 maps_page = MapsPage(url)
-                live_busyness_json = maps_page.retlivebusyness()
-                populartimes_json = maps_page.retpopulartimes()
+                live_busyness_json = maps_page.get_live_busyness()
+                populartimes_json = maps_page.get_popular_times()
 
                 # Parse JSON data into Python dictionaries or lists
                 live_busyness = json.loads(live_busyness_json)
