@@ -9,14 +9,17 @@ const Dialogapi = () => {
     key2: 'value2',
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<Error | null>(null); // Specify the type as 'Error | null'
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     if (Link.trim() !== '') {
       setIsLoading(true);
       setError(null);
 
-      axios.get(`http://127.0.0.1:8000/scraper/getlivebusyness/${Link.trim()}`)
+      // Encode the Link before sending it in the GET request
+      const encodedLink = encodeURIComponent(Link.trim());
+
+      axios.get(`http://127.0.0.1:8000/scraper/getlivebusyness/${encodedLink}`)
         .then(response => {
           setData(response.data);
         })
