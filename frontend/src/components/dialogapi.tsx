@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Dialog } from './dialog';
 
-const Dialogapi = () => {
+interface DialogapiProps {
+  onDataReceived: (data: any) => void; // Define the type of onDataReceived function
+}
+
+
+const Dialogapi = ({onDataReceived} : DialogapiProps) => {
   const [Link, setLink] = useState('');
   const [Data, setData] = useState({
     key1: 'value1',
@@ -10,6 +15,10 @@ const Dialogapi = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+
+  const handleDataReceived = () => {
+    onDataReceived(Data);
+  }
 
   useEffect(() => {
     if (Link.trim() !== '') {
@@ -19,9 +28,9 @@ const Dialogapi = () => {
       // Encode the Link before sending it in the GET request
       const encodedLink = encodeURIComponent(Link.trim());
 
-      axios.get(`http://127.0.0.1:8000/scraper/getlivebusyness/${encodedLink}`)
+      axios.get(`http://127.0.0.1:8000/scraper/getpopulartimes/${encodedLink}`)
         .then(response => {
-          setData(response.data);
+          setData(response.data.populartimes);
         })
         .catch((error: Error) => {
           setError(error);
@@ -32,18 +41,23 @@ const Dialogapi = () => {
     }
   }, [Link]);
 
+  useEffect(() => {
+    handleDataReceived();
+  },[Data]
+  )
+
   return (
-    <div>
-      <h1>Edit Profile</h1>
-      <Dialog onLinkChange={setLink} />
-      <p>Link: {Link}</p>
-      {isLoading ? (
+    <div className = "flex flex-col justify-center mt-10 items-center">
+      <h1>Edit URL:</h1>
+      <Dialog onLinkChange={setLink}/>
+      <p>Current Link: {Link}</p>
+      {/* {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
-        <p>Return data: {JSON.stringify(Data)}</p>
-      )}
+        <p></p>
+      )} */}
     </div>
   );
 };

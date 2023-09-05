@@ -174,7 +174,7 @@ class MapsPage:
                 time_string = re.findall(r"\d+(?:AM|PM)", time)[0]
                 numeric_time = self.TIME_CONVERT[time_string]
                 converted_data.append([percentage, numeric_time])
-            ret_list.append(converted_data)
+            ret_list.append(sorted(converted_data, key=lambda x: x[1]))
             converted_data = []
         return json.dumps(ret_list)
 
