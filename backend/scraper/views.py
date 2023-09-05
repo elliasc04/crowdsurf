@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Scraper
-from .main import MapsPage  # Import your scraping logic
+from .main import MapsPage
 import json
 
 
