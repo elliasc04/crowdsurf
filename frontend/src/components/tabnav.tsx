@@ -47,78 +47,29 @@ interface BusynessData {
   }
 
 
-const sampleData = [
-    [0, 1],
-    [0, 2],
-    [0, 3],
-    [1, 4],
-    [2, 5],
-    [6, 6],
-    [20, 7],
-    [43, 8],
-    [73, 9],
-    [100, 10],
-    [79, 11],
-    [45, 12],
-    [18, 13],
-    [10, 14],
-    [13, 15],
-    [24, 16],
-    [16, 17],
-    [13, 18],
-    [10, 19],
-    [8, 20],
-    [5, 21],
-    [2, 22],
-    [1, 23],
-    [1, 24]
-  ];
-  
-  const inputdata = sampleData.map(([busyness, time]) => ({
-    name: time, // Assuming time is the name
-    UsualBusyness: busyness
-  }));
 
-interface Dataprocessor{
-    tabData: number[][];
-}
 
-const processData = ({tabData}:Dataprocessor) => {
+
+const processData = (tabData: number[][]) => {
     return tabData.map(([busyness, time]) => ({
-      name: String(time), // Assuming time is a number, convert it to a string
-      UsualBusyness: busyness,
+        name: String(time), // Assuming time is a number, convert it to a string
+        UsualBusyness: busyness,
     }));
 };
 
 
 
-export default function Tabs({busynessData}:BusynessData) {
-
-    try {
-        if (busynessData && Array.isArray(busynessData)) {
-          // Extract the seven internal lists from busynessData
-          const [tab1Data, tab2Data, tab3Data, tab4Data, tab5Data, tab6Data, tab7Data] = busynessData;
-    
-          // ... Rest of the component remains the same
-        } else {
-          // Handle the case where busynessData is undefined, missing data, or not in the expected format
-          console.log('No data available.');
-        }
-      } catch (error) {
-        // Handle any other errors that might occur during rendering
-        console.error(error);
-        return <div>An error occurred.</div>;
-      }
+export default function Tabs({ busynessData }: BusynessData) {
     return (
-        <TabsPrimitive.Root defaultValue="tab1">
+      <TabsPrimitive.Root defaultValue="tab1">
         <TabsPrimitive.List
-            className={clsx("flex w-full rounded-t-lg bg-white dark:bg-gray-800")}
+          className={clsx("flex w-full rounded-t-lg bg-white dark:bg-gray-800")}
         >
-            {tabs.map(({ title, value }) => (
+          {tabs.map(({ title, value }) => (
             <TabsPrimitive.Trigger
-                key={`tab-trigger-${value}`}
-                value={value}
-                className={clsx(
+              key={`tab-trigger-${value}`}
+              value={value}
+              className={clsx(
                 "group",
                 "first:rounded-tl-lg last:rounded-tr-lg",
                 "border-b first:border-r last:border-l",
@@ -127,43 +78,78 @@ export default function Tabs({busynessData}:BusynessData) {
                 "flex-1 px-3 py-2.5",
                 "focus:radix-state-active:border-b-red",
                 "focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
-                )}
+              )}
             >
-                <span
+              <span
                 className={clsx(
-                    "text-sm font-medium",
-                    "text-gray-700 dark:text-gray-100"
+                  "text-sm font-medium",
+                  "text-gray-700 dark:text-gray-100"
                 )}
-                >
+              >
                 {title}
-                </span>
+              </span>
             </TabsPrimitive.Trigger>
-            ))}
+          ))}
         </TabsPrimitive.List>
         {tabs.map(({ value }) => (
-            <TabsPrimitive.Content
+          <TabsPrimitive.Content
             key={`tab-content-${value}`}
             value={value}
             className={clsx("rounded-b-lg bg-white px-6 py-4 dark:bg-gray-800")}
-            >
+          >
             <span className="text-sm text-gray-700 dark:text-gray-100">
-                {
-                {
-                    tab1: <div className = "flex flex-row justify-center mt-10 items-center">
-                            <BarGraph receivedData = {inputdata}/>
-                        </div>,
-                    tab2: <Button>click</Button>,
-                    tab3: "Order more coffee",
-                    tab4: "Your inbox is empty",
-                    tab5: "Make some coffee",
-                    tab6: "Order more coffee",
-                    tab7: "Order mfdsaore coffee",
-                }[value]
+              {(() => {
+                try {
+                  let tabData: number[][] = [];
+  
+                  if (busynessData && Array.isArray(busynessData)) {
+                    // Determine which tab's data to use based on the 'value'
+                    switch (value) {
+                        case "tab1":
+                          tabData = busynessData[0];
+                          break;
+                        case "tab2":
+                          tabData = busynessData[1];
+                          break;
+                        case "tab3":
+                          tabData = busynessData[2];
+                          break;
+                        case "tab4":
+                          tabData = busynessData[3];
+                          break;
+                        case "tab5":
+                          tabData = busynessData[4];
+                          break;
+                        case "tab6":
+                          tabData = busynessData[5];
+                          break;
+                        case "tab7":
+                          tabData = busynessData[6];
+                          break;
+                        default:
+                          break;
+                      }
+                  }
+  
+                  if (tabData.length > 0) {
+                    return (
+                      <div className="flex flex-row justify-center mt-10 items-center">
+                        <BarGraph receivedData={processData(tabData)} />
+                      </div>
+                    );
+                  } else {
+                    return <Button>click</Button>;
+                  }
+                } catch (error) {
+                  console.error(error);
+                  return <div>An error occurred.</div>;
                 }
+              })()}
             </span>
-            
-            </TabsPrimitive.Content>
+          </TabsPrimitive.Content>
         ))}
-        </TabsPrimitive.Root>
+      </TabsPrimitive.Root>
     );
-};
+  }
+  
+  
