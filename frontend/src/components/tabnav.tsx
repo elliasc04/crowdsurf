@@ -45,11 +45,6 @@ interface BusynessData {
     // Define the structure of your data here
     busynessData: number[][][]; // Use the same structure as your data
   }
-
-
-
-
-
 const processData = (tabData: number[][]) => {
     return tabData.map(([busyness, time]) => ({
         name: String(time), // Assuming time is a number, convert it to a string
