@@ -1,6 +1,6 @@
 import { formatEther } from "@ethersproject/units";
 import { CaretDownIcon } from "@radix-ui/react-icons";
-import { useCallback, useEffect, useState } from "react";
+import { Key, useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import * as Dropdown from "../components/primitives/Dropdown";
 import { useBalances } from "../hooks/useBalances";
@@ -185,6 +185,17 @@ export const Navigation = () => {
 						/>
 					</Dropdown.Root>
 				</NavigationPrimitive.Item>
+
+				{accounts && accounts.length !== 0 && (
+					<NavigationPrimitive.Item>
+						<NavigationPrimitive.Text>
+							{accounts &&
+								accounts.map((account, i) => (
+									<ul key={account}>{balances?.[i] ? `Ξ${formatEther(balances[i])}` : null}</ul>
+								))}
+						</NavigationPrimitive.Text>
+					</NavigationPrimitive.Item>
+				)}
 
 				<NavigationPrimitive.Item>
 					<ThemeSwitcher />
