@@ -3,7 +3,6 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 import { Key, useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import * as Dropdown from "../components/primitives/Dropdown";
-import { useBalances } from "../hooks/useBalances";
 import { getAddChainParameters } from "../utils/chains";
 import { hooks, metaMask } from "../utils/metaMask";
 import { tw } from "../utils/tw";
@@ -61,7 +60,6 @@ export const Navigation = () => {
 
 	const [error, setError] = useState<Error | undefined>(undefined);
 
-	const balances = useBalances(provider, accounts);
 
 	useEffect(() => {
 		if (activeChainId && (!desiredChainId || desiredChainId === -1)) {
@@ -189,10 +187,6 @@ export const Navigation = () => {
 				{accounts && accounts.length !== 0 && (
 					<NavigationPrimitive.Item>
 						<NavigationPrimitive.Text>
-							{accounts &&
-								accounts.map((account, i) => (
-									<ul key={account}>{balances?.[i] ? `Ξ${formatEther(balances[i])}` : null}</ul>
-								))}
 						</NavigationPrimitive.Text>
 					</NavigationPrimitive.Item>
 				)}

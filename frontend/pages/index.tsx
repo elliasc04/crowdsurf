@@ -14,9 +14,20 @@ import { Image } from "../components/primitives/Image";
 import { inputStyles } from "../components/primitives/Input";
 import { Label } from "../components/primitives/Label";
 import { InnerColumn, OuterColumn, PageWrapper, Section } from "../components/primitives/Layout";
-import { hooks } from "../utils/metaMask";
-import { VestedPairFactoryPayload, VestedPairFactorySchema } from "../utils/schema";
 import { tw } from "../utils/tw";
+import Tabs from "../components/tabnav";
+import Dialogapi from "../components/dialogapi";
+import Typewriter from 'typewriter-effect';
+// import { useTypewriter, Cursor } from "react-simple-typewriter";
+
+
+// const [text] = useTypewriter({
+// 	words: ["SPAC","Lisa's","Fran's","Sarge","Elder","Allison","Plex","Blom"],
+// 	loop: true,
+// 	typeSpeed: 20,
+// 	deleteSpeed: 10,
+// 	delaySpeed: 2000,
+//   });
 
 const Column = tw.div`flex-1`;
 
@@ -74,73 +85,7 @@ const ColumnItem = ({ isBuy = false }: { isBuy?: boolean }) => {
 };
 
 const Home: NextPage = () => {
-	const { useProvider } = hooks;
-
-	const [signer, setSigner] = useState<Signer>();
-	const [greeterContract, setGreeterContract] = useState<Contract>();
-	const [greeterContractAddr, setGreeterContractAddr] = useState<string>("");
-	const [greeting, setGreeting] = useState<string>("");
-	const [greetingInput, setGreetingInput] = useState<string>("");
-	const provider = useProvider();
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors }
-	} = useForm<VestedPairFactoryPayload>({
-		defaultValues: {
-			amounts: "[0]",
-			cliffTime: 30,
-			equityTokenInitialSupply: 10000,
-			equityTokenName: "HUC",
-			recipients: "[0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266]",
-			vestingTime: 30,
-			equityTokenSymbol: "HUC"
-		},
-		resolver: zodResolver(VestedPairFactorySchema)
-	});
-
-	useEffect((): void => {
-		setSigner(provider?.getSigner());
-	}, [provider]);
-
-	async function deployGreeterContract(
-		signer: Signer,
-		payload: VestedPairFactoryPayload
-	): Promise<void> {
-		const Greeter = new ethers.ContractFactory(
-			VestedPairFactoryJson.abi,
-			VestedPairFactoryJson.bytecode,
-			signer
-		);
-
-		try {
-			const greeterContract = await Greeter.deploy();
-
-			await greeterContract.deployed();
-
-			// const greeting = await greeterContract.createOrderBook(...Object.values(payload));
-			const greeting = await greeterContract.createOrderBook(
-				10000,
-				"GUH",
-				"GUH",
-				["0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"],
-				[100],
-				10,
-				20
-			);
-			setGreeterContract(greeterContract);
-			setGreeting(greeting);
-
-			toast.success(`Vested Pair created!`);
-
-			setGreeterContractAddr(greeterContract.address);
-		} catch (error: any) {
-			console.error("Error!" + (error && error.message ? `\n\n${error.message}` : ""));
-			toast.error("An error has occurred, please try again");
-		}
-	}
-
+	const [dataReceived, setDataReceived] = useState([[[1]]]);
 	return (
 		<PageWrapper>
 			<Navigation />
@@ -172,8 +117,14 @@ const Home: NextPage = () => {
 
 					<InnerColumn className="py-10 md:py-20 lg:scroll-py-32">
 						<Heading className="relative !text-white text-center" size="xxl" weight="semibold">
-							Unleashing digital <br />
-							equity potential
+							How busy is it at <br />
+							<Typewriter
+								options={{
+									strings: ['SPAC',"Lisas","Frans",'Elder',"Sarge"],
+									autoStart: true,
+									loop: true,
+								  }}
+							/>
 						</Heading>
 					</InnerColumn>
 				</div>
@@ -201,70 +152,12 @@ const Home: NextPage = () => {
 
 						<div className="mt-8">
 							<Heading>Create Vested Pair</Heading>
-							<form
-								onSubmit={handleSubmit((data) => {
-									provider?.getSigner() && deployGreeterContract(provider?.getSigner(), data);
-								})}
-							>
-								<div className="my-2 grid grid-flow-row-dense grid-cols-4 gap-5">
-									<div className="col-span-2 md:col-span-1">
-										<Label>Equity Token Initial Supply</Label>
-										<input {...register("equityTokenInitialSupply")} className={inputStyles()} />
-										{errors.equityTokenInitialSupply?.message && (
-											<ErrorMessage>{errors.equityTokenInitialSupply?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Equity Token Name</Label>
-										<input {...register("equityTokenName")} className={inputStyles()} />
-										{errors.equityTokenName?.message && (
-											<ErrorMessage>{errors.equityTokenName?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Equity Token Symbol</Label>
-										<input {...register("equityTokenSymbol")} className={inputStyles()} />
-										{errors.equityTokenSymbol?.message && (
-											<ErrorMessage>{errors.equityTokenSymbol?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Recipients</Label>
-										<input {...register("recipients")} className={inputStyles()} />
-										{errors.recipients?.message && (
-											<ErrorMessage>{errors.recipients?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Amounts</Label>
-										<input {...register("amounts")} className={inputStyles()} />
-										{errors.amounts?.message && (
-											<ErrorMessage>{errors.amounts?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Cliff Time</Label>
-										<input {...register("cliffTime")} className={inputStyles()} />
-										{errors.cliffTime?.message && (
-											<ErrorMessage>{errors.cliffTime?.message}</ErrorMessage>
-										)}
-									</div>
-									<div className="col-span-2 md:col-span-1">
-										<Label>Vesting Time</Label>
-										<input {...register("vestingTime")} className={inputStyles()} />
-										{errors.vestingTime?.message && (
-											<ErrorMessage>{errors.vestingTime?.message}</ErrorMessage>
-										)}
-									</div>
-								</div>
-								<div className="flex flex-row justify-end">
-									<Button type="submit" shade="primary">
-										Create
-									</Button>
-								</div>
-							</form>
+							
 						</div>
 					</InnerColumn>
+					<Dialogapi onDataReceived={setDataReceived}/>
+					<Tabs busynessData = {dataReceived}/>
+					<p>Data: {JSON.stringify(dataReceived)}</p>
 				</Section>
 			</OuterColumn>
 		</PageWrapper>
