@@ -99,11 +99,11 @@ export const Navigation = () => {
 			<NavigationPrimitive.Root>
 				<NavigationPrimitive.Item>
 					<NavigationPrimitive.NextLink href="/" className="!font-bold">
-						Vestra
+						CrowdSurf
 					</NavigationPrimitive.NextLink>
 				</NavigationPrimitive.Item>
 
-				<NavigationPrimitive.Item>
+				{/* <NavigationPrimitive.Item>
 					{isActive ? (
 						error ? (
 							<NavigationPrimitive.Button
@@ -135,9 +135,9 @@ export const Navigation = () => {
 							{error ? "Try again?" : "Connect"}
 						</NavigationPrimitive.Button>
 					)}
-				</NavigationPrimitive.Item>
+				</NavigationPrimitive.Item> */}
 
-				<NavigationPrimitive.Item>
+				{/* <NavigationPrimitive.Item>
 					<Dropdown.Root
 						sideOffset={14}
 						trigger={
@@ -182,7 +182,7 @@ export const Navigation = () => {
 							}}
 						/>
 					</Dropdown.Root>
-				</NavigationPrimitive.Item>
+				</NavigationPrimitive.Item> */}
 
 				{accounts && accounts.length !== 0 && (
 					<NavigationPrimitive.Item>

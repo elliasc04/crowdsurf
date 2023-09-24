@@ -27,7 +27,7 @@ const Dialog = ({ onLinkChange}: DialogProps) => {
     
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogPrimitive.Trigger asChild>
-        <Button>click</Button>
+        <Button>Edit Link</Button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal forceMount>
         <Transition.Root show={isOpen}>
@@ -65,11 +65,10 @@ const Dialog = ({ onLinkChange}: DialogProps) => {
               )}
             >
               <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                Edit profile
+                Edit Custom Link
               </DialogPrimitive.Title>
               <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
-                Make changes to your profile here. Click save when you&apos;re
-                done.
+                Make changes to your custom link. Click Save when done.
               </DialogPrimitive.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
@@ -78,7 +77,7 @@ const Dialog = ({ onLinkChange}: DialogProps) => {
                     htmlFor="firstName"
                     className="text-xs font-medium text-gray-700 dark:text-gray-400"
                   >
-                    First Name
+                    Link
                   </label>
                   <input
                     id="firstName"

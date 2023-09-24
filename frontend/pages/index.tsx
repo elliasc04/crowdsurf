@@ -120,7 +120,7 @@ const Home: NextPage = () => {
 							How busy is it at <br />
 							<Typewriter
 								options={{
-									strings: ['SPAC',"Lisas","Frans",'Elder',"Sarge"],
+									strings: ['SPAC?',"Lisa's?","Fran's?",'Elder?',"Sarge?"],
 									autoStart: true,
 									loop: true,
 								  }}
@@ -130,8 +130,8 @@ const Home: NextPage = () => {
 				</div>
 
 				<Section>
-					<InnerColumn width="third">
-						<ColumnWrapper>
+					<InnerColumn width="full">
+						{/* <ColumnWrapper>
 							<Column>
 								<Heading>Buy Tokens</Heading>
 								<ColumnInner>
@@ -151,15 +151,18 @@ const Home: NextPage = () => {
 						</ColumnWrapper>
 
 						<div className="mt-8">
-							<Heading>Create Vested Pair</Heading>
+							<Heading>Select Option</Heading>
 							
+						</div> */}
+						<div className="flex-row items-center justify-center mb-[30px]">
+							<Dialogapi onDataReceived={setDataReceived}/>
 						</div>
+						<Tabs busynessData = {dataReceived}/>
 					</InnerColumn>
-					<Dialogapi onDataReceived={setDataReceived}/>
-					<Tabs busynessData = {dataReceived}/>
-					<p>Data: {JSON.stringify(dataReceived)}</p>
 				</Section>
 			</OuterColumn>
+			
+			{/* <p>Data: {JSON.stringify(dataReceived)}</p> */}
 		</PageWrapper>
 	);
 };

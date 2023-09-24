@@ -48,16 +48,15 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
 
   return (
     <div className = "flex flex-col justify-center mt-10 items-center">
-      <h1>Edit URL:</h1>
       <Dialog onLinkChange={setLink}/>
-      <p>Current Link: {Link}</p>
-      {/* {isLoading ? (
+      {/* <p>Current Link: {Link}</p> */}
+      {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error: {error.message}</p>
       ) : (
         <p></p>
-      )} */}
+      )}
     </div>
   );
 };

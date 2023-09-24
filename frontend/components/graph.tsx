@@ -9,13 +9,13 @@ interface BarGraphProps{
 export default function BarGraph({receivedData}:BarGraphProps) {
     return (
         <BarChart
-          width={1000}
+          width={600}
           height={400}
           data={receivedData}
           margin={{
             top: 5,
-            right: 20,
-            left: 20,
+            right: 40,
+            left: 0,
             bottom: 5,
           }}
         >
