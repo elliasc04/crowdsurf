@@ -3,7 +3,8 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Scraper
 from .main import MapsPage
 import json
-
+from datetime import datetime
+from django.http import HttpResponse
 
 def scrape_data(url):
     """Get data by scraping Google Maps page and store it to the database."""
@@ -57,3 +58,16 @@ def get_popular_times(request, url):
             return JsonResponse({"error": str(e)}, status=400)
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
+
+@csrf_exempt
+def index(request):
+    now = datetime.now()
+    html = f'''
+    <html>
+        <body>
+            <h1>Hello from Vercel!</h1>
+            <p>The current time is { now }.</p>
+        </body>
+    </html>
+    '''
+    return HttpResponse(html)
