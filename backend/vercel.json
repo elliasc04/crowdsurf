@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "./backend/scraper/wsgi.py",
+        "src": "./scraper/wsgi.py",
         "use": "@vercel/python",
         "config": {
           "maxLambdaSize": "15mb",
@@ -13,7 +13,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "./backend/scraper/wsgi.py" 
+        "dest": "./scraper/wsgi.py" 
       }
     ]
   }
