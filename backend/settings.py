@@ -107,8 +107,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'scraperdb',
-        'USER': '8yg2slqeyrmqzzkp66zx',
-        'PASSWORD': 'pscale_pw_gYieHM9HmTIVIidCvgApcDC38JvYbTPKnwnnEzORlRu',
+        'USER': 'rszxpjkg5x5eko5p7i10',
+        'PASSWORD': 'pscale_pw_RFcqRakIZEQrQg4AsIIK2ZxbqDqOpgh3Z8DYF3TpnuY',
         'HOST': 'aws.connect.psdb.cloud',  # This is typically the PlanetScale MySQL endpoint
         'PORT': '3306',  # Default MySQL port
         'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
