@@ -43,11 +43,7 @@ const chainInfo: ChainInfo = {
 
 const { useChainId, useAccounts, useIsActivating, useIsActive, useProvider, useENSNames } = hooks;
 
-interface Props {
-	activeChainId: number;
-	switchChain: (chainId: number) => void;
-	chainIds: number[];
-}
+
 
 export const Navigation = () => {
 	const [desiredChainId, setDesiredChainId] = useState<number | undefined>(1);
