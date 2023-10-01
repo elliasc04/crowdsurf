@@ -18,16 +18,6 @@ import { tw } from "../utils/tw";
 import Tabs from "../components/tabnav";
 import Dialogapi from "../components/dialogapi";
 import Typewriter from 'typewriter-effect';
-// import { useTypewriter, Cursor } from "react-simple-typewriter";
-
-
-// const [text] = useTypewriter({
-// 	words: ["SPAC","Lisa's","Fran's","Sarge","Elder","Allison","Plex","Blom"],
-// 	loop: true,
-// 	typeSpeed: 20,
-// 	deleteSpeed: 10,
-// 	delaySpeed: 2000,
-//   });
 
 const Column = tw.div`flex-1`;
 
