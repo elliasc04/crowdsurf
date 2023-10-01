@@ -126,7 +126,7 @@ export default function Tabs({ busynessData }: BusynessData) {
                         break;
                     }
                   }
-                  if (tabData != undefined) {
+                  if (tabData.length > 0) {
                     return (
                       <div className="flex flex-row justify-center mt-10 items-center">
                         <BarGraph receivedData={processData(tabData)} />
