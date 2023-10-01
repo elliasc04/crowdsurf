@@ -2,11 +2,11 @@
 
 # Build the project
 echo "Building the project..."
-py -m pip install -r requirements.txt
+python3.11 -m pip install -r requirements.txt
 echo "Make Migration..."
-py manage.py makemigrations --noinput
-py manage.py makemigrations scraper
-py manage.py migrate --noinput
-py manage.py migrate scraper
+python3.11 manage.py makemigrations --noinput
+python3.11 manage.py makemigrations scraper
+python3.11 manage.py migrate --noinput
+python3.11 manage.py migrate scraper
 echo "Collect Static..."
-py manage.py collectstatic --noinput --clear
+python3.11 manage.py collectstatic --noinput --clear
