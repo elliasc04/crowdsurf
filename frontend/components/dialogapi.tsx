@@ -28,7 +28,7 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
       // Encode the Link before sending it in the GET request
       const encodedLink = encodeURIComponent(Link.trim());
 
-      axios.get(`http://127.0.0.1:8000/scraper/getpopulartimes/${encodedLink}`)
+      axios.get(`https://fullstackscraper-backend-hpb60tegk-guoyethan-gmailcom.vercel.app/getpopulartimes/${encodedLink}`)
         .then(response => {
           setData(response.data.populartimes);
         })
