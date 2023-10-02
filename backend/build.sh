@@ -8,5 +8,6 @@ python3.9 manage.py makemigrations --noinput
 python3.9 manage.py makemigrations scraper
 python3.9 manage.py migrate --noinput
 python3.9 manage.py migrate scraper
-echo "Collect Static..."
-python3.9 manage.py collectstatic --noinput --clear
+echo 'DONEDONEDONEOFNONFOEANODNSAFOIDAFNDONIOAAAAAAAAAAA'
+# echo "Collect Static..."
+# python3.9 manage.py collectstatic --noinput --clear
