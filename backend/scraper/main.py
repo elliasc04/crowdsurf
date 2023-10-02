@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-import re, json, urllib.parse
+import re, json
 from datetime import datetime
 
 
@@ -76,7 +76,7 @@ class MapsPage:
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-notifications")
 
-        self.url = urllib.parse.unquote(page_id)
+        self.url = page_id
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.get(self.url)
 
