@@ -2,6 +2,7 @@
 
 # dependencies
 /lib
+/backend/lib
 /backend/db.sqlite3
 /backend/scraper/migrations
 /backend/__pycache__
