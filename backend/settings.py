@@ -103,17 +103,30 @@ WSGI_APPLICATION = "wsgi.app"
 #   }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'scraperdb',
+#         'USER': 'rszxpjkg5x5eko5p7i10',
+#         'PASSWORD': 'pscale_pw_RFcqRakIZEQrQg4AsIIK2ZxbqDqOpgh3Z8DYF3TpnuY',
+#         'HOST': 'aws.connect.psdb.cloud',  # This is typically the PlanetScale MySQL endpoint
+#         'PORT': '3306',  # Default MySQL port
+#         'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'scraperdb',
-        'USER': 'rszxpjkg5x5eko5p7i10',
-        'PASSWORD': 'pscale_pw_RFcqRakIZEQrQg4AsIIK2ZxbqDqOpgh3Z8DYF3TpnuY',
-        'HOST': 'aws.connect.psdb.cloud',  # This is typically the PlanetScale MySQL endpoint
-        'PORT': '3306',  # Default MySQL port
-        'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default']['OPTIONS']['charset'] = 'utf8mb4'
+del DATABASES['default']['OPTIONS']['sslmode'] 
+DATABASES['default']['OPTIONS']['ssl'] =  {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}
 
 
 # Password validation
