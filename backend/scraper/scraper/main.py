@@ -127,6 +127,7 @@ class MapsPage:
         return self.average_times[day]
 
     def get_live_busyness(self):
+        return "balls"
         if not self.has_live_data:
             return json.dumps("No Live Data")
 
