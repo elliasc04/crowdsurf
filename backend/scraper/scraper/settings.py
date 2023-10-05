@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url, os
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=9*#*9%kz4s7+b^rykgbneblu*feef4phywzzvk0s_$13d^gyi'
+SECRET_KEY = 'some_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -80,8 +80,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'scraperdb',
-        'USER': 't2eohuim65ypda32l5lc',
-        'PASSWORD': 'pscale_pw_N3mCtlTUVINHMl3orzBaeSPAgQcPpcqwvKvn7UryxTO',
+        'USER': 'fake-user',
+        'PASSWORD': 'fake-password',
         'HOST': 'aws.connect.psdb.cloud',  # This is typically the PlanetScale MySQL endpoint
         'PORT': '3306',  # Default MySQL port
         'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}

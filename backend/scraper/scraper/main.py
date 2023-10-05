@@ -1,5 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import re, json
 from datetime import datetime
@@ -81,8 +83,9 @@ class MapsPage:
         chrome_options.add_argument("--disable-infobars")
         chrome_options.add_argument("--disable-dev-shm-usage")
 
+
         self.url = page_id
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
         self.driver.get(self.url)
 
 
