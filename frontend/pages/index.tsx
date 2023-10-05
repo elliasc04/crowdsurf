@@ -18,6 +18,8 @@ import { tw } from "../utils/tw";
 import Tabs from "../components/tabnav";
 import Dialogapi from "../components/dialogapi";
 import Typewriter from 'typewriter-effect';
+import { Linkbutton } from "../components/linkbutton";
+import { Link } from "../components/primitives/Toolbar";
 
 const Column = tw.div`flex-1`;
 
@@ -148,11 +150,12 @@ const Home: NextPage = () => {
 							<Dialogapi onDataReceived={setDataReceived}/>
 						</div>
 						<Tabs busynessData = {dataReceived}/>
+						<Linkbutton></Linkbutton>
 					</InnerColumn>
 				</Section>
 			</OuterColumn>
 			
-			{/* <p>Data: {JSON.stringify(dataReceived)}</p> */}
+			<p>Data: {JSON.stringify(dataReceived)}</p>
 		</PageWrapper>
 	);
 };

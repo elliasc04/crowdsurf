@@ -26,9 +26,9 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
       setError(null);
 
       // Encode the Link before sending it in the GET request
-      const encodedLink = Link.trim();
+      const encodedLink = encodeURIComponent(Link.trim());
 
-      axios.get(`http://18.224.96.1/getpopulartimes/${Link}`)
+      axios.get(`https://fullstackscraper-backend-hpb60tegk-guoyethan-gmailcom.vercel.app/getpopulartimes/${encodedLink}`)
         .then(response => {
           setData(response.data.populartimes);
         })
@@ -49,7 +49,7 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
   return (
     <div className = "flex flex-col justify-center mt-10 items-center">
       <Dialog onLinkChange={setLink}/>
-      {/* <p>Current Link: {`http://18.224.96.1/getpopulartimes/${Link}`}</p> */}
+      {/* <p>Current Link: {Link}</p> */}
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
