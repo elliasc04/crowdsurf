@@ -28,7 +28,9 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
       // Encode the Link before sending it in the GET request
       const encodedLink = Link.trim();
 
-      axios.get(`http://18.224.96.1/getpopulartimes/${Link}`)
+      axios.get(`https://api.crowdsurf.nu/getpopulartimes/${Link}`, {
+        maxRedirects: 0,
+      })
         .then(response => {
           setData(response.data.populartimes);
         })
@@ -49,7 +51,7 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
   return (
     <div className = "flex flex-col justify-center mt-10 items-center">
       <Dialog onLinkChange={setLink}/>
-      {/* <p>Current Link: {`http://18.224.96.1/getpopulartimes/${Link}`}</p> */}
+      <p>Current Link: {`https://api.crowdsurf.nu/getpopulartimes/${Link}`}</p>
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (

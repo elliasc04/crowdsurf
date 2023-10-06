@@ -6,6 +6,7 @@ const Document = () => {
 			<Head>
 				<meta name="theme-color" content="#111827" />
 				<script src="/static/theme.js" />
+				<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 			</Head>
 			<body>
 				<Main />
