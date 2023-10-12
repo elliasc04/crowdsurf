@@ -51,7 +51,7 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
   return (
     <div className = "flex flex-col justify-center mt-10 items-center">
       <Dialog onLinkChange={setLink}/>
-      <p>Current Link: {`https://api.crowdsurf.nu/getpopulartimes/${Link}`}</p>
+      <p>Current Link: {`https://api.crowdsurf.nu/getpopulartimes/${Link}/`}</p>
       {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
