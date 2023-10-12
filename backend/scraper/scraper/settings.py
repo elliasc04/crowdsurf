@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'scraper.urls'
@@ -72,6 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'scraper.wsgi.application'
 
+CORS_ALLOWED_ORIGINS = [
+    'https://crowdsurf.nu'
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

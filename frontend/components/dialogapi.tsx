@@ -28,7 +28,7 @@ const Dialogapi = ({onDataReceived} : DialogapiProps) => {
       // Encode the Link before sending it in the GET request
       const encodedLink = Link.trim();
 
-      axios.get(`https://api.crowdsurf.nu/getpopulartimes/${Link}`, {
+      axios.get(`https://api.crowdsurf.nu/getpopulartimes/${Link}/`, {
         maxRedirects: 0,
       })
         .then(response => {
