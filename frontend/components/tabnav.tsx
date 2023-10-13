@@ -132,8 +132,8 @@ export default function Tabs({ busynessData1 }: BusynessData) {
                   if (tabData.length > 0) {
                     return (
                       <div className="flex flex-row justify-center mt-10 items-center">
-                        {/* <BarGraph receivedData = {processData(tabData)}/> */}
-                        <AreaGraph receivedData={processData(tabData)} />
+                        <BarGraph receivedData = {processData(tabData)}/>
+                        {/* <AreaGraph receivedData={processData(tabData)} /> */}
                       </div>
                     );
                   } else {
