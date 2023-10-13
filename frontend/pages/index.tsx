@@ -113,7 +113,7 @@ const Home: NextPage = () => {
 					</InnerColumn>
 				</Section>
 			</OuterColumn>
-			<p>Data: {JSON.stringify(dataReceived)}</p>
+			{/* <p>Data: {JSON.stringify(dataReceived)}</p> */}
 		</PageWrapper>
 	);
 };
