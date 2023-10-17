@@ -3,6 +3,7 @@ import * as ButtonPrimitive from "./primitives/Button";
 import React, { useState, useEffect, useRef } from 'react';
 import {useButtonPress} from '../hooks/buttonpress';
 import axios from 'axios';
+import Typewriter from 'typewriter-effect';
 
 
 interface LinkButtonProps {
@@ -37,11 +38,10 @@ export const Linkbutton = ({ onPopDataReceived, onLiveDataReceived, Link, childr
       });
   };
   useButtonPress(buttonRef, handleButtonClick);
-
   return (
     <div>
       <ButtonPrimitive.Button ref={buttonRef} shade="primitive" className = "mr-10 ml-10">
-        {isLoading ? 'Loading...' : children}
+        {isLoading ? "Loading..." : children}
       </ButtonPrimitive.Button>
       {error && <p>Error: {error.message}</p>}
     </div>

@@ -41,35 +41,36 @@ function CustomTooltip({active, payload, label}: any){
 
 
 export default function LiveBarGraph({receivedData}:BarGraphProps) {
-    if (JSON.stringify(receivedData) != JSON.stringify("No Live Data")){
+    if (JSON.stringify(receivedData) == JSON.stringify([{"name":"Live Busyness"},{"name":"Usual Busyness"}])){
       return(
         <div className ="min-w-[160px] max-w-[160px] min-h-[400px] max-h-[400px] items-center justify-center">
             <p className="text-[#c6bed4] text-center mt-[50px]">
               Sorry,
             </p>
             <p className="text-[#281c34] text-center mt-[75px]">
-              There is no live data. Maybe it's closed?
+              There's no live data. Maybe it's closed?
             </p>
         </div>
       );
+    } else {
+      return (
+          <BarChart
+            width={200}
+            height={400}
+            data={receivedData}
+            margin={{
+              top: 5,
+              right: 40,
+              left: 0,
+              bottom: 5,
+            }}
+            className = "ml-[-35px] mr-[-30px]"
+          >
+              <XAxis dataKey="name" axisLine = {true} tick={false}/>
+              <YAxis type = "number" domain = {[0,100]} axisLine={false} tickLine={false}/>
+              <Tooltip content={<CustomTooltip/>}/>
+              <Bar dataKey="LiveBusyness" fill="#483464" />
+          </BarChart> 
+      );
     }
-    return (
-        <BarChart
-          width={200}
-          height={400}
-          data={receivedData}
-          margin={{
-            top: 5,
-            right: 40,
-            left: 0,
-            bottom: 5,
-          }}
-          className = "ml-[-35px] mr-[-30px]"
-        >
-            <XAxis dataKey="name" axisLine = {true} tick={false}/>
-            <YAxis type = "number" domain = {[0,100]} axisLine={false} tickLine={false}/>
-            <Tooltip content={<CustomTooltip/>}/>
-            <Bar dataKey="LiveBusyness" fill="#483464" />
-        </BarChart>
-    );
 }

@@ -111,7 +111,6 @@ export default function Tabs({ busynessData }: BusynessData) {
                     return (
                         <div className="flex flex-row justify-center mt-10 items-center">
                         <LiveBarGraph receivedData={processData(tabData)} />
-                        {/* <AreaGraph receivedData={processData(tabData as [string, number, number, number, string])} /> */}
                         </div>
                     );
                     } else {

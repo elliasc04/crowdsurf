@@ -109,7 +109,7 @@ const Home: NextPage = () => {
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lisa']}>Lisa's Cafe</Linkbutton>
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['mudd']}>Mudd Library</Linkbutton>
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['main']}>University Library</Linkbutton>
-							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lakefill']}>The Lakefill</Linkbutton>
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['anytimefitness']}>The Lakefill</Linkbutton>
 						</div>
 						<div className = "flex flex-row items-center justify-center">
 							<div className = "static">
