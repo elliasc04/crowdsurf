@@ -137,18 +137,11 @@ export default function Tabs({ busynessData }: BusynessData) {
                         break;
                     }
                   }
-                  if (updated) {
-                    const data = processData(tabData);
                     return (
                       <div className="flex flex-row justify-center mt-10 items-center w-full">
-                        {/* <BarGraph receivedData = {processData(tabData)}/> */}
-                        <AreaGraph receivedData={processData(tabData)} />
-                        
+                        <AreaGraph receivedData={processData(tabData)} empty={!updated} />
                       </div>
                     );
-                  } else {
-                    return (<div className = "w-full"></div>)
-                  }
                 } catch (error) {
                   console.error(error);
                   return <div></div>;

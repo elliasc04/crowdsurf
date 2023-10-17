@@ -81,29 +81,6 @@ const Home: NextPage = () => {
 
 				<Section>
 					<InnerColumn width="full">
-						{/* <ColumnWrapper>
-							<Column>
-								<Heading>Buy Tokens</Heading>
-								<ColumnInner>
-									<ColumnItem isBuy />
-									<ColumnItem isBuy />
-									<ColumnItem isBuy />
-								</ColumnInner>
-							</Column>
-							<Column>
-								<Heading>Sell Token</Heading>
-								<ColumnInner>
-									<ColumnItem />
-									<ColumnItem />
-									<ColumnItem />
-								</ColumnInner>
-							</Column>
-						</ColumnWrapper>
-
-						<div className="mt-8">
-							<Heading>Select Option</Heading>
-							
-						</div> */}
 						<div className="flex flex-row items-center justify-center mb-[75px]">
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['spac']}>SPAC</Linkbutton>
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lisa']}>Lisa's Cafe</Linkbutton>

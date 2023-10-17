@@ -13,7 +13,7 @@ Bold = Easier to see on themes background
 	/* Primary */
 	--color-primary-bold: var(--light-hue), 100%, 50%;
 	--color-primary: var(--light-hue), 100%, 60%;
-	--color-primary-faint: var(--light-hue), 100%, 70%;
+	--color-primary-faint: var(--dark-hue), 50%, 50%;
 	/* Top-level */
 	--color-highlight: var(--light-hue), 5%, 35%;
 	--color-type: var(--light-hue), 35%, 10%;
