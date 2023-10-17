@@ -2,10 +2,9 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Scraper
 from .main import MapsPage
-import json
+import json, traceback
 from datetime import datetime
 from django.http import HttpResponse
-
 def scrape_data(url):
     """Get data by scraping Google Maps page and store it to the database."""
     maps_page = MapsPage(url)
@@ -37,7 +36,8 @@ def get_live_busyness(request, url):
                 }
             )
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
+            error_traceback = traceback.format_exc()
+            return JsonResponse({"error": str(e), "traceback": error_traceback,}, status=400)
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
@@ -55,6 +55,26 @@ def get_popular_times(request, url):
                 }
             )
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
+            error_traceback = traceback.format_exc()
+            return JsonResponse({"error": str(e), "traceback": error_traceback,}, status=400)
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
+
+@csrf_exempt
+def get_full_info(request, url):
+    if request.method == "GET":
+        try:
+            live_busyness_data, populartimes_data = scrape_data(url)
+            return JsonResponse(
+                {
+                    "success": "Popular times data saved successfully",
+                    "populartimes": populartimes_data,
+                    "livebusyness": live_busyness_data,
+                }
+            )
+        except Exception as e:
+            error_traceback = traceback.format_exc()
+            return JsonResponse({"error": str(e), "traceback": error_traceback,}, status=400)
 
     return JsonResponse({"error": "Invalid request method"}, status=400)

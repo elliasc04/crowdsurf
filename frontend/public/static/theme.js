@@ -8,7 +8,7 @@
 		} else {
 			document.documentElement.setAttribute("data-theme", "dark");
 			// Set Safari status bar color to gray-900
-			document.querySelector('meta[name="theme-color"]').setAttribute("content", "#111827");
+			document.querySelector('meta[name="theme-color"]').setAttribute("content", "#c2d1f2");
 		}
 	}
 

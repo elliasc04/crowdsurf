@@ -1,11 +1,9 @@
 import { useState, useEffect, RefObject } from 'react';
 
-export function useButtonPress(buttonRef: RefObject<HTMLButtonElement | HTMLAnchorElement>) {
-  const [buttonPressed, setButtonPressed] = useState(false);
-
+export function useButtonPress(buttonRef: RefObject<HTMLButtonElement | HTMLAnchorElement>, onClick: () => void) {
   useEffect(() => {
     const handleButtonClick = () => {
-      setButtonPressed(true);
+      onClick();
     };
 
     if (buttonRef.current) {
@@ -17,7 +15,5 @@ export function useButtonPress(buttonRef: RefObject<HTMLButtonElement | HTMLAnch
         buttonRef.current.removeEventListener('click', handleButtonClick);
       }
     };
-  }, [buttonRef]);
-
-  return buttonPressed;
+  }, [buttonRef, onClick]);
 }

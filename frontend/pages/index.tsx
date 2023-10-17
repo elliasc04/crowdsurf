@@ -8,14 +8,15 @@ import { toast } from "react-hot-toast";
 import VestedPairFactoryJson from "../abi/VestedPairFactory.json";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/Navigation";
-import { Button } from "../components/primitives/Button";
 import { Heading } from "../components/primitives/Heading";
 import { Image } from "../components/primitives/Image";
 import { inputStyles } from "../components/primitives/Input";
 import { Label } from "../components/primitives/Label";
 import { InnerColumn, OuterColumn, PageWrapper, Section } from "../components/primitives/Layout";
+import * as ToolTipPrimitive from "../components/primitives/Tooltip";
 import { tw } from "../utils/tw";
 import Tabs from "../components/tabnav";
+import LiveTab from "../components/livetabnav";
 import Typewriter from 'typewriter-effect';
 import { Linkbutton } from "../components/linkbutton";
 import { Link } from "../components/primitives/Toolbar";
@@ -32,7 +33,10 @@ const Home: NextPage = () => {
 	};
 
   
-	const [dataReceived, setDataReceived] = useState([[[1]]]);
+	const [popDataReceived, setpopDataReceived] = useState([[[1]]]);
+	type TabData = [string, number, number, number, string];
+	const [liveDataReceived, setliveDataReceived] = useState<TabData>(["a", 1, 1, 1, "a"]);
+
 	return (
 		<PageWrapper>
 			<Navigation />
@@ -66,7 +70,7 @@ const Home: NextPage = () => {
 							How busy is it at <br />
 							<Typewriter
 								options={{
-									strings: ['SPAC?',"Lisa's?","Fran's?",'Elder?',"Sarge?"],
+									strings: ['SPAC?',"Lisa's?","Mudd?",'Main?',"the Lakefill?"],
 									autoStart: true,
 									loop: true,
 								  }}
@@ -100,16 +104,21 @@ const Home: NextPage = () => {
 							<Heading>Select Option</Heading>
 							
 						</div> */}
-						<div className="flex flex-row items-center justify-center mb-[30px]">
-							{/* <Dialogapi onDataReceived={setDataReceived}/> */}
-							<Linkbutton onDataReceived = {setDataReceived} Link={linkDictionary['spac']}>SPAC</Linkbutton>
-							<Linkbutton onDataReceived = {setDataReceived} Link={linkDictionary['lisa']}>Lisa's Cafe</Linkbutton>
-							<Linkbutton onDataReceived = {setDataReceived} Link={linkDictionary['mudd']}>Mudd Library</Linkbutton>
-							<Linkbutton onDataReceived = {setDataReceived} Link={linkDictionary['main']}>University Library</Linkbutton>
-							<Linkbutton onDataReceived = {setDataReceived} Link={linkDictionary['lakefill']}>The Lakefill</Linkbutton>
+						<div className="flex flex-row items-center justify-center mb-[75px]">
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['spac']}>SPAC</Linkbutton>
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lisa']}>Lisa's Cafe</Linkbutton>
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['mudd']}>Mudd Library</Linkbutton>
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['main']}>University Library</Linkbutton>
+							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lakefill']}>The Lakefill</Linkbutton>
 						</div>
-						<Tabs busynessData1 = {dataReceived}/>
-						
+						<div className = "flex flex-row items-center justify-center">
+							<div className = "">
+								<Tabs busynessData = {popDataReceived}/>
+							</div>
+							<div>
+								<LiveTab busynessData = {liveDataReceived}/>
+							</div>
+						</div>
 					</InnerColumn>
 				</Section>
 			</OuterColumn>
