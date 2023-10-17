@@ -6,15 +6,15 @@ interface AreaGraphProps{
 }
 
 function timeconvert(time: number) {
-    if (time < 0 || time > 23) {
+    if (time < 0 || time > 24) {
       return "Invalid input";
     }
   
-    if (time === 0) {
+    if (time == 24) {
       return "12 AM";
     } else if (time < 12) {
       return `${time} AM`;
-    } else if (time === 12) {
+    } else if (time == 12) {
       return "12 PM";
     } else {
       return `${time - 12} PM`;

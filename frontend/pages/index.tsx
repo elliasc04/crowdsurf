@@ -112,10 +112,10 @@ const Home: NextPage = () => {
 							<Linkbutton onLiveDataReceived = {setliveDataReceived} onPopDataReceived = {setpopDataReceived} Link={linkDictionary['lakefill']}>The Lakefill</Linkbutton>
 						</div>
 						<div className = "flex flex-row items-center justify-center">
-							<div className = "">
+							<div className = "static">
 								<Tabs busynessData = {popDataReceived}/>
 							</div>
-							<div>
+							<div className = "static">
 								<LiveTab busynessData = {liveDataReceived}/>
 							</div>
 						</div>
