@@ -1,11 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
-import { Contract, ethers, Signer } from "ethers";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import VestedPairFactoryJson from "../abi/VestedPairFactory.json";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { Navigation } from "../components/Navigation";
 import { Heading } from "../components/primitives/Heading";
@@ -19,7 +17,6 @@ import Tabs from "../components/tabnav";
 import LiveTab from "../components/livetabnav";
 import Typewriter from 'typewriter-effect';
 import { Linkbutton } from "../components/linkbutton";
-import { Link } from "../components/primitives/Toolbar";
 
 
 const Home: NextPage = () => {
