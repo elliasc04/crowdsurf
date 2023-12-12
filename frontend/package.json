@@ -49,6 +49,7 @@
 		"@trpc/next": "10.0.0-proxy-beta.17",
 		"@trpc/react": "10.0.0-proxy-beta.17",
 		"@trpc/server": "10.0.0-proxy-beta.17",
+		"@vercel/analytics": "^1.1.1",
 		"@web3-react/core": "^8.1.3-beta.0",
 		"@web3-react/metamask": "^8.1.2-beta.0",
 		"@web3-react/network": "^8.0.0-beta.0",
