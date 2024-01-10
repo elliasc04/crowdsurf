@@ -1,4 +1,4 @@
-# fullstackscraper
+# Crowdsurf.nu
 
 Wecome to Crowdsurf! This repository contains a full stack scraping application that acts as a central hub for gathering data from Google Maps and visualizing it for users in an easy to use, all in one format. Feedback and contributions are encouraged to help improve the project. You can find the application hosted here:
 
