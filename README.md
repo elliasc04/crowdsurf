@@ -10,7 +10,7 @@ Frontend: https://crowdsurf.nu/
 ## Backend:
 The backend operates on an AWS EC2 Ubuntu/Linux 22.04 instance, utilizing Django for URL routing, database connections, and core scraping logic. Gunicorn and Supervisor manage the backend API, while NGINX serves data. 
 
-Data storage is handled by a cloud-based MySQL database hosted by PlanetScale for efficient data retrieval.
+Data storage is handled by a cloud based MySQL database hosted by PlanetScale for efficient data retrieval.
 
 Axios is used to connect frontend and backend.
 
