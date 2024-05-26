@@ -90,7 +90,6 @@ class MapsPage:
             self.live_busyness = self._get_live_busyness()
         else:
             self.has_live_data = False
-
     def _get_average_times(self):
         data_points = self.driver.find_elements(By.CLASS_NAME, "g2BVhd")
         return self._parse_average_times(data_points, list(self.DAYS.keys()))
@@ -108,11 +107,8 @@ class MapsPage:
     def _get_live_busyness(self):
         return self._parse_live_busyness(self.average_times, self.DAYS)
 
-    def _parse_live_busyness(self, element_dict, days):
-        # current_time = str(datetime.now().time())
-        # current_day = str(datetime.now().strftime("%A"))
-        # time_index = int(re.search(r"(\d+):", current_time)[0][:-1])
 
+    def _parse_live_busyness(self, element_dict, days):
         current_time_cst = datetime.now(pytz.timezone('America/Chicago')).time()
         current_day = datetime.now(pytz.timezone('America/Chicago')).strftime("%A")
         time_index = current_time_cst.hour
@@ -130,11 +126,12 @@ class MapsPage:
             if match_time == time_index:
                 return [current_day, element, time_index - 1, False]
 
+
     def get_by_day(self, day):
         return self.average_times[day]
 
     def get_live_busyness(self):
-        if not self.has_live_data and not self.live_busyness:
+        if not self.has_live_data or not self.live_busyness:
             return json.dumps("No Live Data")
 
         day, busyness, current_time, is_currently_live = self.live_busyness
@@ -164,7 +161,7 @@ class MapsPage:
             # sets time_index to the current time on a 24h clock
             time_index = int(live_time[1])
             # finds the earliest time available on the current day
-            
+
             earliest_time = re.findall(r"\d+(?:AM|PM)", time_dict[day_index][0])
             if len(earliest_time) == 0:
                 earliest_time = self.TIME_CONVERT[re.findall(r"\d+(?:AM|PM)", time_dict[day_index][1])[0]] - 1
@@ -189,13 +186,13 @@ class MapsPage:
         return json.dumps(ret_list)
 
 
-anytime_url = "https://www.google.com/maps/place/Anytime+Fitness/@38.859691,-94.7507246,12z/data=!4m6!3m5!1s0x87c0c1a24b58163b:0x518415eefd7cb2c!8m2!3d38.859691!4d-94.6683271!16s%2Fg%2F11c6q33cnq?entry=ttu"
-# firstwatch_url = "https://www.google.com/maps/place/First+Watch/@38.8540006,-94.6731214,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0c1a0c9eebe41:0x2ab4ae8a7170762a!8m2!3d38.8540006!4d-94.6705465!16s%2Fg%2F1hm68nzx0?entry=ttu"
-#henry_crown = "https://www.google.com/maps/place/Henry+Crown+Sports+Pavilion/@42.0596387,-87.6739166,18z/data=!3m1!4b1!4m6!3m5!1s0x880fd00b703e4c39:0x509c3569d8eb2a8e!8m2!3d42.0596373!4d-87.6729806!16s%2Fg%2F1hf3_crv1?entry=ttu"
 
-#anytimedata = MapsPage(henry_crown)
-anytimedata = MapsPage(anytime_url)
-print(anytimedata.get_live_busyness())
+# anytime_url = "https://www.google.com/maps/place/Anytime+Fitness/@38.859691,-94.7507246,12z/data=!4m6!3m5!1s0x87c0c1a24b58163b:0x518415eefd7cb2c!8m2!3d38.859691!4d-94.6683271!16s%2Fg%2F11c6q33cnq?entry=ttu"
+# firstwatch_url = "https://www.google.com/maps/place/First+Watch/@38.8540006,-94.6731214,17z/data=!3m1!4b1!4m6!3m5!1s0x87c0c1a0c9eebe41:0x2ab4ae8a7170762a!8m2!3d38.8540006!4d-94.6705465!16s%2Fg%2F1hm68nzx0?entry=ttu"
+# henry_crown = "https://www.google.com/maps/place/Henry+Crown+Sports+Pavilion/@42.0596387,-87.6739166,18z/data=!3m1!4b1!4m6!3m5!1s0x880fd00b703e4c39:0x509c3569d8eb2a8e!8m2!3d42.0596373!4d-87.6729806!16s%2Fg%2F1hf3_crv1?entry=ttu"
+
+# anytimedata = MapsPage(henry_crown)
+# anytimedata = MapsPage(anytime_url)
 #print(anytimedata.get_popular_times())
 
 # firstwatchdata = MapsPage(firstwatch_url)
