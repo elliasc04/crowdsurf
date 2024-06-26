@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from "next/document";
-import { Analytics } from '@vercel/analytics/react';
 const Document = () => {
 	return (
 		<Html className="bg-app text-type">
@@ -11,7 +10,6 @@ const Document = () => {
 			<body>
 				<Main />
 				<NextScript />
-				<Analytics/>
 			</body>
 		</Html>
 	);

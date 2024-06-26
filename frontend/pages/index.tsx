@@ -11,6 +11,7 @@ import { Image } from "../components/primitives/Image";
 import { inputStyles } from "../components/primitives/Input";
 import { Label } from "../components/primitives/Label";
 import { InnerColumn, OuterColumn, PageWrapper, Section } from "../components/primitives/Layout";
+import { Analytics } from '@vercel/analytics/react';
 import * as ToolTipPrimitive from "../components/primitives/Tooltip";
 import { tw } from "../utils/tw";
 import Tabs from "../components/tabnav";
@@ -36,6 +37,7 @@ const Home: NextPage = () => {
 
 	return (
 		<PageWrapper>
+			<Analytics />
 			<Navigation />
 			<OuterColumn>
 				<div className="relative w-full overflow-hidden rounded-xl bg-primary-faint">
